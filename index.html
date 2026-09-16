@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Harts by Shy</title>
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  >
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       INTRO
+  ========================== -->
+  <section id="intro-screen">
+
+    <div class="intro-content">
+
+      <p class="intro-small">
+        welcome to
+      </p>
+
+      <img
+        src="logo/logo-1.png"
+        alt="Harts by Shy"
+        class="intro-logo"
+      >
+
+      <p class="intro-description">
+        illustration · design · motion · web
+      </p>
+
+      <button id="enter-btn" class="enter-button">
+        enter portfolio
+      </button>
+
+    </div>
+
+    <p class="intro-bottom">
+      best viewed with a little music ♫
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       MUSIC
+  ========================== -->
+  <audio id="background-music" autoplay loop preload="auto">
+    <source src="audio/audio-1.mp3" type="audio/mpeg">
+  </audio>
+
+
+  <!-- =========================
+       WEBSITE
+  ========================== -->
+  <main id="website">
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+    <nav class="navbar navbar-expand-lg custom-navbar">
+
+      <div class="container-fluid portfolio-container">
+
+        <a class="navbar-brand" href="#" id="logo-home">
+
+          <img
+            src="logo/logo-1.png"
+            alt="Harts by Shy"
+            class="site-logo"
+          >
+
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#portfolioNavbar"
+          aria-controls="portfolioNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div
+          class="collapse navbar-collapse"
+          id="portfolioNavbar"
+        >
+
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+
+            <li class="nav-item">
+              <button
+                class="nav-link category-nav"
+                data-category="home"
+              >
+                home
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button
+                class="nav-link"
+                id="about-nav"
+              >
+                about
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button
+                class="nav-link category-nav"
+                data-category="illustration"
+              >
+                illustration
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button
+                class="nav-link category-nav"
+                data-category="poster"
+              >
+                posters
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <button
+                class="nav-link category-nav"
+                data-category="video"
+              >
+                motion
+              </button>
+            </li>
+
+            <li class="nav-item">
+              <span
+                id="heart-counter"
+                class="heart-counter"
+              >
+                ♡ 0/4
+              </span>
+            </li>
+
+            <li class="nav-item">
+              <button
+                id="music-toggle"
+                class="music-button"
+                aria-label="Toggle music"
+              >
+                ♫
+              </button>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HOME
+    ========================== -->
+    <section
+      id="home-section"
+      class="portfolio-section active-section"
+    >
+
+
+      <!-- =========================
+           ABOUT
+      ========================== -->
+      <section id="about" class="hero-about-section">
+
+        <button
+          class="hidden-heart heart-1"
+          aria-label="Hidden heart"
+        >
+          ♡
+        </button>
+
+
+        <div class="portfolio-container">
+
+          <div class="row align-items-center gy-5">
+
+            <div class="col-lg-7 hero-about-copy">
+
+              <p class="hero-eyebrow">
+                hello, welcome to my little creative corner
+              </p>
+
+              <h1 class="hero-about-title">
+                Hi, I’m <em>Shy.</em>
+              </h1>
+
+              <p class="hero-about-intro">
+                I’m a freelance illustrator and designer who loves
+                making things feel thoughtful, playful, and human.
+              </p>
+
+              <p class="hero-about-body">
+                My creative journey started with illustration, but
+                curiosity has slowly taken me into graphic design,
+                branding, motion, web design, and now UI/UX.
+              </p>
+
+              <p class="hero-about-body">
+                I’m still discovering where creativity can take me —
+                experimenting with new tools, learning new skills,
+                and finding new ways to turn little ideas into things
+                people can see, use, and experience.
+              </p>
+
+              <p class="hero-about-body">
+                This portfolio is a little collection of that journey:
+                polished pieces, experiments, and ideas I simply
+                wanted to bring to life.
+              </p>
+
+
+              <!-- CREATIVE TOOLS -->
+              <div class="creative-tools">
+
+                <p class="tools-label">
+                  tools I create with
+                </p>
+
+                <div class="tools-list">
+
+                  <div class="tool-card">
+                    <span class="tool-icon procreate-icon">
+                      <i class="fa-solid fa-paintbrush"></i>
+                    </span>
+
+                    <span>Procreate</span>
+                  </div>
+
+
+                  <div class="tool-card">
+                    <span class="tool-icon adobe-icon">
+                      Ai
+                    </span>
+
+                    <span>Adobe Illustrator</span>
+                  </div>
+
+
+                  <div class="tool-card">
+                    <span class="tool-icon adobe-icon">
+                      Ps
+                    </span>
+
+                    <span>Adobe Photoshop</span>
+                  </div>
+
+
+                  <div class="tool-card">
+                    <span class="tool-icon canva-icon">
+                      C
+                    </span>
+
+                    <span>Canva</span>
+                  </div>
+
+
+                  <div class="tool-card">
+                    <span class="tool-icon figma-icon">
+                      <i class="fa-brands fa-figma"></i>
+                    </span>
+
+                    <span>Figma</span>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <button
+                class="explore-work-btn"
+                id="explore-work-btn"
+              >
+                explore my work <span>↓</span>
+              </button>
+
+            </div>
+
+
+            <div class="col-lg-4 offset-lg-1">
+
+              <div class="hero-profile-card">
+
+                <div class="hero-profile-wrapper">
+
+                  <img
+                    src="about%20me/profile-1.svg"
+                    alt="Portrait of Shy"
+                    class="hero-profile-image"
+                  >
+
+                </div>
+
+                <p class="profile-note">
+                  illustrator · designer · curious creative
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           SELECTED WORKS
+      ========================== -->
+      <section class="selected-work">
+
+        <button
+          class="hidden-heart heart-2"
+          aria-label="Hidden heart"
+        >
+          ♡
+        </button>
+
+        <div class="portfolio-container">
+
+          <div class="section-heading">
+
+            <p class="section-number">
+              01
+            </p>
+
+            <h2>
+              Selected
+              <em>works</em>
+            </h2>
+
+            <p>
+              pick a little world to explore.
+            </p>
+
+          </div>
+
+
+          <div class="category-list">
+
+
+            <!-- ILLUSTRATION -->
+            <button
+              class="category-card category-open"
+              data-category="illustration"
+            >
+
+              <div class="category-image-wrapper">
+
+                <img
+                  src="illustration/illustration-1.jpg"
+                  alt="Illustration preview"
+                >
+
+                <span class="category-number">
+                  01
+                </span>
+
+              </div>
+
+              <div class="category-info">
+
+                <div>
+
+                  <p class="category-label">
+                    Concept-driven illustration & visual storytelling
+                  </p>
+
+                  <h3>
+                    Illustration
+                  </h3>
+
+                </div>
+
+                <span class="category-arrow">
+                  ↗
+                </span>
+
+              </div>
+
+            </button>
+
+
+            <!-- POSTERS -->
+            <button
+              class="category-card category-open offset-card"
+              data-category="poster"
+            >
+
+              <div class="category-image-wrapper poster-preview">
+
+                <img
+                  src="poster/poster-1.png"
+                  alt="Poster preview"
+                >
+
+                <span class="category-number">
+                  02
+                </span>
+
+              </div>
+
+              <div class="category-info">
+
+                <div>
+
+                  <p class="category-label">
+                    Editorial design & typography
+                  </p>
+
+                  <h3>
+                    Posters
+                  </h3>
+
+                </div>
+
+                <span class="category-arrow">
+                  ↗
+                </span>
+
+              </div>
+
+            </button>
+
+
+            <!-- MOTION -->
+            <button
+              class="category-card category-open"
+              data-category="video"
+            >
+
+              <div class="category-image-wrapper video-preview">
+
+                <video
+                  src="video/video-1.mp4"
+                  muted
+                  playsinline
+                  preload="metadata"
+                ></video>
+
+                <span class="video-play-icon">
+                  ▶
+                </span>
+
+                <span class="category-number">
+                  03
+                </span>
+
+              </div>
+
+              <div class="category-info">
+
+                <div>
+
+                  <p class="category-label">
+                    Video editing & creative direction
+                  </p>
+
+                  <h3>
+                    Motion
+                  </h3>
+
+                </div>
+
+                <span class="category-arrow">
+                  ↗
+                </span>
+
+              </div>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           CREATIVE MEMORY GAME
+      ========================== -->
+      <section class="memory-section" id="memory-game">
+
+        <div class="portfolio-container">
+
+          <div class="memory-heading">
+
+            <p class="memory-eyebrow">
+              a little creative break
+            </p>
+
+            <h2>
+              test your
+              <em>visual memory.</em>
+            </h2>
+
+            <p class="memory-description">
+              Match all eight pairs to unlock a little note from me.
+            </p>
+
+          </div>
+
+
+          <div class="memory-topbar">
+
+            <div class="memory-stat">
+              <span>moves</span>
+              <strong id="memory-moves">0</strong>
+            </div>
+
+            <div class="memory-stat">
+              <span>matched</span>
+              <strong id="memory-matched">0 / 8</strong>
+            </div>
+
+            <button
+              class="memory-reset"
+              id="memory-reset"
+              type="button"
+            >
+              restart ↻
+            </button>
+
+          </div>
+
+
+          <div
+            class="memory-grid"
+            id="memory-grid"
+            aria-label="Creative memory matching game"
+          ></div>
+
+
+          <div
+            class="memory-complete"
+            id="memory-complete"
+            aria-live="polite"
+          >
+
+            <p class="memory-complete-small">
+              all matched.
+            </p>
+
+            <h3>
+              you have a good eye.
+            </h3>
+
+            <p>
+              Looks like details are your thing too.
+              Maybe we’d make something good together.
+            </p>
+
+            <a href="mailto:sadccareer@gmail.com">
+              let's create something ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           WEBSITE CTA
+      ========================== -->
+      <section class="website-cta">
+
+        <button
+          class="hidden-heart heart-3"
+          aria-label="Hidden heart"
+        >
+          ♡
+        </button>
+
+        <div class="portfolio-container">
+
+          <div class="cta-content">
+
+            <p class="cta-small">
+              p.s. — this website is part of the portfolio, too.
+            </p>
+
+            <h2>
+              love this
+              <em>website, too?</em>
+            </h2>
+
+            <p class="cta-copy">
+              I designed and coded this portfolio myself.
+              If you'd love a website with a little personality
+              of its own, let's make something together.
+            </p>
+
+            <a
+              href="mailto:sadccareer@gmail.com"
+              class="cta-button"
+            >
+              work with me ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- FINAL HEART -->
+      <section class="final-heart-area">
+
+        <button
+          class="hidden-heart heart-4"
+          aria-label="Hidden heart"
+        >
+          ♡
+        </button>
+
+      </section>
+
+
+      <!-- HEART SECRET MESSAGE -->
+      <section
+        id="heart-surprise"
+        class="heart-surprise"
+      >
+
+        <div class="portfolio-container">
+
+          <p class="heart-surprise-small">
+            you found them all ♡
+          </p>
+
+          <h2>
+            you found all the
+            <em>little hearts</em>
+          </h2>
+
+          <p>
+            seems like you have a good eye for details.
+            maybe we should make something together?
+          </p>
+
+          <a href="mailto:sadccareer@gmail.com">
+            work with me ↗
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- FOOTER -->
+      <footer>
+
+        <div class="portfolio-container footer-content">
+
+          <p>Harts by Shy</p>
+          <p>made with ♡</p>
+          <p>© 2026</p>
+
+        </div>
+
+      </footer>
+
+    </section>
+
+
+
+    <!-- =========================
+         ILLUSTRATION
+    ========================== -->
+    <section
+      id="illustration-section"
+      class="portfolio-section"
+    >
+
+      <div class="collection-cover illustration-cover">
+
+        <button class="cover-back back-home">
+          ← back
+        </button>
+
+        <img
+          src="logo/logo-4.png"
+          alt="Illustration"
+          class="collection-cover-logo"
+        >
+
+        <p class="collection-cover-text">
+          Concept-driven illustration & visual storytelling
+        </p>
+
+        <span class="collection-scroll">
+          scroll to explore
+          <b>↓</b>
+        </span>
+
+      </div>
+
+
+      <div class="gallery-page">
+
+        <div class="portfolio-container">
+
+
+          <!-- COLLECTION 01 -->
+          <div class="illustration-collection">
+
+            <div class="gallery-intro">
+              <p class="gallery-number">
+                collection 01
+              </p>
+            </div>
+
+            <div class="art-grid">
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-1.jpg"
+                  alt="Illustration 1"
+                >
+              </figure>
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-2.jpg"
+                  alt="Illustration 2"
+                >
+              </figure>
+
+            </div>
+
+          </div>
+
+
+          <!-- COLLECTION 02 -->
+          <div class="illustration-collection">
+
+            <div class="gallery-intro">
+              <p class="gallery-number">
+                collection 02
+              </p>
+            </div>
+
+            <div class="art-grid">
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-3.jpg"
+                  alt="Illustration 3"
+                >
+              </figure>
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-4.jpg"
+                  alt="Illustration 4"
+                >
+              </figure>
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-5.jpg"
+                  alt="Illustration 5"
+                >
+              </figure>
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-6.jpg"
+                  alt="Illustration 6"
+                >
+              </figure>
+
+            </div>
+
+          </div>
+
+
+          <!-- COLLECTION 03 -->
+          <div class="illustration-collection">
+
+            <div class="gallery-intro">
+              <p class="gallery-number">
+                collection 03
+              </p>
+            </div>
+
+            <div class="art-grid">
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-7.jpg"
+                  alt="Illustration 7"
+                >
+              </figure>
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-8.jpg"
+                  alt="Illustration 8"
+                >
+              </figure>
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-9.jpg"
+                  alt="Illustration 9"
+                >
+              </figure>
+
+            </div>
+
+          </div>
+
+
+          <!-- COLLECTION 04 -->
+          <div class="illustration-collection">
+
+            <div class="gallery-intro">
+              <p class="gallery-number">
+                collection 04
+              </p>
+            </div>
+
+            <div class="art-grid">
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-10.jpg"
+                  alt="Illustration 10"
+                >
+              </figure>
+
+              <figure class="art-item">
+                <img
+                  src="illustration/illustration-11.jpg"
+                  alt="Illustration 11"
+                >
+              </figure>
+
+            </div>
+
+          </div>
+
+
+          <button class="back-button">
+            ← back to selected works
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         POSTERS
+    ========================== -->
+    <section
+      id="poster-section"
+      class="portfolio-section"
+    >
+
+      <div class="collection-cover poster-cover">
+
+        <button class="cover-back back-home">
+          ← back
+        </button>
+
+        <img
+          src="logo/logo-2.png"
+          alt="Posters"
+          class="collection-cover-logo"
+        >
+
+        <p class="collection-cover-text">
+          type, color, composition,
+          and visual stories.
+        </p>
+
+        <span class="collection-scroll">
+          scroll to explore
+          <b>↓</b>
+        </span>
+
+      </div>
+
+
+      <div class="gallery-page">
+
+        <div class="portfolio-container">
+
+          <div class="gallery-intro">
+
+            <p class="gallery-number">
+              selected collection
+            </p>
+
+            <h2>
+              Selected posters
+            </h2>
+
+          </div>
+
+
+          <div class="art-grid">
+
+            <figure class="art-item">
+              <img src="poster/poster-1.png" alt="Poster 1">
+              <figcaption>01</figcaption>
+            </figure>
+
+            <figure class="art-item">
+              <img src="poster/poster-2.jpeg" alt="Poster 2">
+              <figcaption>02</figcaption>
+            </figure>
+
+            <figure class="art-item">
+              <img src="poster/poster-3.jpeg" alt="Poster 3">
+              <figcaption>03</figcaption>
+            </figure>
+
+            <figure class="art-item">
+              <img src="poster/poster-4.jpeg" alt="Poster 4">
+              <figcaption>04</figcaption>
+            </figure>
+
+            <figure class="art-item">
+              <img src="poster/poster-5.svg" alt="Poster 5">
+              <figcaption>05</figcaption>
+            </figure>
+
+            <figure class="art-item">
+              <img src="poster/poster-6.svg" alt="Poster 6">
+              <figcaption>06</figcaption>
+            </figure>
+
+            <figure class="art-item">
+              <img src="poster/poster-7.svg" alt="Poster 7">
+              <figcaption>07</figcaption>
+            </figure>
+
+            <figure class="art-item">
+              <img src="poster/poster-8.svg" alt="Poster 8">
+              <figcaption>08</figcaption>
+            </figure>
+
+          </div>
+
+
+          <button class="back-button">
+            ← back to selected works
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MOTION
+    ========================== -->
+    <section
+      id="video-section"
+      class="portfolio-section"
+    >
+
+      <div class="collection-cover video-cover">
+
+        <button class="cover-back back-home">
+          ← back
+        </button>
+
+        <span class="cover-decoration motion-heart">
+          ♡
+        </span>
+
+        <img
+          src="logo/logo-3.png"
+          alt="Motion"
+          class="collection-cover-logo"
+        >
+
+        <p class="collection-cover-text">
+          little stories brought to life.
+        </p>
+
+        <span class="collection-scroll">
+          scroll to explore
+          <b>↓</b>
+        </span>
+
+      </div>
+
+
+      <div class="gallery-page">
+
+        <div class="portfolio-container">
+
+          <div class="gallery-intro">
+
+            <p class="gallery-number">
+              selected collection
+            </p>
+
+            <h2>
+              Selected motion
+            </h2>
+
+          </div>
+
+
+          <div class="video-gallery">
+
+
+            <!-- VIDEO 01 -->
+            <article class="video-project">
+
+              <div class="video-frame">
+
+                <video controls playsinline>
+                  <source
+                    src="video/video-1.mp4"
+                    type="video/mp4"
+                  >
+                </video>
+
+              </div>
+
+              <div class="video-project-info">
+                <span>01</span>
+                <h3>Motion study</h3>
+              </div>
+
+            </article>
+
+
+            <!-- VIDEO 02 -->
+            <article class="video-project">
+
+              <div class="video-frame">
+
+                <video controls playsinline>
+                  <source
+                    src="video/video-2.mp4"
+                    type="video/mp4"
+                  >
+                </video>
+
+              </div>
+
+              <div class="video-project-info">
+                <span>02</span>
+                <h3>Motion study</h3>
+              </div>
+
+            </article>
+
+          </div>
+
+
+          <button class="back-button">
+            ← back to selected works
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  ></script>
+
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
