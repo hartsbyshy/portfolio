@@ -861,14 +861,6 @@ video {
     transform 0.7s ease;
 }
 
-.category-card:hover
-.category-image-wrapper img,
-.category-card:hover
-.category-image-wrapper video {
-  transform:
-    scale(1.035);
-}
-
 .category-number {
   position:
     absolute;
@@ -1816,11 +1808,6 @@ footer {
 
   transition:
     transform 0.55s ease;
-}
-
-.art-item img:hover {
-  transform:
-    scale(1.025);
 }
 
 .art-item figcaption {
