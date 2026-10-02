@@ -1,843 +1,551 @@
-// =========================
-// HARTS BY SHY
-// FINAL SCRIPT.JS
-// =========================
-
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =========================
-  // ELEMENTS
-  // =========================
 
-  const introScreen = document.getElementById("intro-screen");
-  const enterButton = document.getElementById("enter-btn");
+  /* =======================================================
+     ELEMENTS
+  ======================================================= */
 
-  const backgroundMusic = document.getElementById("background-music");
-  const musicToggle = document.getElementById("music-toggle");
+  const body =
+    document.body;
 
-  const portfolioSections = document.querySelectorAll(".portfolio-section");
+  const introScreen =
+    document.getElementById("intro-screen");
 
-  const categoryOpenButtons =
-    document.querySelectorAll(".category-open");
+  const enterBtn =
+    document.getElementById("enter-btn");
 
-  const categoryNavButtons =
-    document.querySelectorAll(".category-nav");
+  const music =
+    document.getElementById("background-music");
 
-  const logoHome =
-    document.getElementById("logo-home");
-
-  const aboutNav =
-    document.getElementById("about-nav");
-
-  const exploreWorkBtn =
-    document.getElementById("explore-work-btn");
-
-  const backButtons =
-    document.querySelectorAll(".back-button");
-
-  const coverBackButtons =
-    document.querySelectorAll(".back-home");
-
-  const hiddenHearts =
-    document.querySelectorAll(".hidden-heart");
-
-  const heartCounter =
-    document.getElementById("heart-counter");
-
-  const heartSurprise =
-    document.getElementById("heart-surprise");
+  const musicToggle =
+    document.getElementById("music-toggle");
 
 
-  let heartsFound = 0;
+  /* =======================================================
+     INTRO
+  ======================================================= */
+
+  function updateMusicButton() {
+
+    if (!music || !musicToggle) {
+      return;
+    }
+
+    musicToggle.classList.toggle(
+      "is-playing",
+      !music.paused
+    );
 
 
-  // =========================
-  // INTRO
-  // =========================
-
-  if (enterButton && introScreen) {
-
-    enterButton.addEventListener("click", async () => {
-
-      introScreen.classList.add("hide");
-
-      if (backgroundMusic) {
-
-        try {
-
-          backgroundMusic.volume = 0.25;
-
-          await backgroundMusic.play();
-
-          if (musicToggle) {
-            musicToggle.classList.add("playing");
-            musicToggle.textContent = "Ⅱ";
-          }
-
-        } catch (error) {
-
-          console.log(
-            "Music autoplay was blocked by the browser."
-          );
-
-        }
-
-      }
-
-      setTimeout(() => {
-        introScreen.style.display = "none";
-      }, 900);
-
-    });
-
+    musicToggle.setAttribute(
+      "aria-label",
+      music.paused
+        ? "Play background music"
+        : "Pause background music"
+    );
   }
 
 
-  // =========================
-  // MUSIC
-  // =========================
+  function enterPortfolio() {
 
-  if (backgroundMusic) {
-    backgroundMusic.volume = 0.25;
-  }
-
-
-  if (musicToggle && backgroundMusic) {
-
-    musicToggle.addEventListener("click", async () => {
-
-      if (backgroundMusic.paused) {
-
-        try {
-
-          await backgroundMusic.play();
-
-          musicToggle.classList.add("playing");
-
-          musicToggle.textContent = "Ⅱ";
-
-        } catch (error) {
-
-          console.log(
-            "Unable to play music."
-          );
-
-        }
-
-      } else {
-
-        backgroundMusic.pause();
-
-        musicToggle.classList.remove("playing");
-
-        musicToggle.textContent = "♫";
-
-      }
-
-    });
-
-  }
-
-
-  // =========================
-  // PAUSE VIDEOS
-  // =========================
-
-  function pauseAllVideos() {
-
-    document
-      .querySelectorAll("video")
-      .forEach((video) => {
-
-        video.pause();
-
-      });
-
-  }
-
-
-  // =========================
-  // CLOSE MOBILE NAV
-  // =========================
-
-  function closeMobileNavbar() {
-
-    const navbarCollapse =
-      document.getElementById("portfolioNavbar");
-
-    if (!navbarCollapse) return;
-
-
-    if (
-      typeof bootstrap !== "undefined" &&
-      navbarCollapse.classList.contains("show")
-    ) {
-
-      const collapseInstance =
-        bootstrap.Collapse.getOrCreateInstance(
-          navbarCollapse
-        );
-
-      collapseInstance.hide();
-
-    }
-
-  }
-
-
-  // =========================
-  // SHOW SECTION
-  // =========================
-
-  function showSection(category) {
-
-    pauseAllVideos();
-
-
-    portfolioSections.forEach((section) => {
-
-      section.classList.remove(
-        "active-section"
-      );
-
-    });
-
-
-    let targetSection = null;
-
-
-    if (category === "home") {
-
-      targetSection =
-        document.getElementById(
-          "home-section"
-        );
-
+    if (!introScreen) {
+      return;
     }
 
 
-    if (category === "illustration") {
-
-      targetSection =
-        document.getElementById(
-          "illustration-section"
-        );
-
-    }
+    introScreen.classList.add(
+      "is-hidden"
+    );
 
 
-    if (category === "poster") {
-
-      targetSection =
-        document.getElementById(
-          "poster-section"
-        );
-
-    }
+    body.classList.remove(
+      "intro-open"
+    );
 
 
-    if (category === "video") {
-
-      targetSection =
-        document.getElementById(
-          "video-section"
-        );
-
-    }
-
-
-    if (targetSection) {
-
-      targetSection.classList.add(
-        "active-section"
-      );
-
-    }
-
+    /*
+      Goes directly to ABOUT.
+      No extra home/hero page.
+    */
 
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "auto"
     });
 
 
-    closeMobileNavbar();
+    if (music) {
+
+      music.volume = 0.3;
+
+      music
+        .play()
+        .then(updateMusicButton)
+        .catch(updateMusicButton);
+
+    }
+
 
     setTimeout(() => {
-      refreshRevealElements();
-    }, 100);
+
+      introScreen.style.display =
+        "none";
+
+    }, 750);
 
   }
 
 
-  // =========================
-  // CATEGORY CARDS
-  // =========================
+  if (enterBtn) {
 
-  categoryOpenButtons.forEach(
-    (button) => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          const category =
-            button.dataset.category;
-
-          showSection(category);
-
-        }
-      );
-
-    }
-  );
-
-
-  // =========================
-  // NAVIGATION
-  // =========================
-
-  categoryNavButtons.forEach(
-    (button) => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          const category =
-            button.dataset.category;
-
-          showSection(category);
-
-        }
-      );
-
-    }
-  );
-
-
-  // =========================
-  // LOGO HOME
-  // =========================
-
-  if (logoHome) {
-
-    logoHome.addEventListener(
+    enterBtn.addEventListener(
       "click",
-      (event) => {
+      enterPortfolio
+    );
+
+  }
+
+
+  /* =======================================================
+     MUSIC
+  ======================================================= */
+
+  if (music) {
+    music.volume = 0.3;
+  }
+
+
+  if (musicToggle && music) {
+
+    musicToggle.addEventListener(
+      "click",
+      async () => {
+
+        if (music.paused) {
+
+          try {
+
+            await music.play();
+
+          } catch (error) {
+
+            console.log(
+              "Audio requires user interaction."
+            );
+
+          }
+
+        } else {
+
+          music.pause();
+
+        }
+
+
+        updateMusicButton();
+
+      }
+    );
+
+
+    music.addEventListener(
+      "play",
+      updateMusicButton
+    );
+
+
+    music.addEventListener(
+      "pause",
+      updateMusicButton
+    );
+
+  }
+
+
+  /* =======================================================
+     MOBILE NAV
+  ======================================================= */
+
+  const mobileToggle =
+    document.getElementById(
+      "mobile-menu-toggle"
+    );
+
+
+  const navLinks =
+    document.getElementById(
+      "nav-links"
+    );
+
+
+  function closeMobileMenu() {
+
+    if (!mobileToggle || !navLinks) {
+      return;
+    }
+
+
+    navLinks.classList.remove(
+      "is-open"
+    );
+
+
+    mobileToggle.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  }
+
+
+  if (mobileToggle && navLinks) {
+
+    mobileToggle.addEventListener(
+      "click",
+      () => {
+
+        const isOpen =
+          navLinks.classList.toggle(
+            "is-open"
+          );
+
+
+        mobileToggle.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     SMOOTH SCROLL
+  ======================================================= */
+
+  const internalLinks =
+    document.querySelectorAll(
+      'a[href^="#"]'
+    );
+
+
+  internalLinks.forEach(link => {
+
+    link.addEventListener(
+      "click",
+      event => {
+
+        const href =
+          link.getAttribute("href");
+
+
+        if (
+          !href ||
+          href === "#"
+        ) {
+          return;
+        }
+
+
+        const target =
+          document.querySelector(href);
+
+
+        if (!target) {
+          return;
+        }
+
 
         event.preventDefault();
 
-        showSection("home");
 
-      }
-    );
-
-  }
+        closeMobileMenu();
 
 
-  // =========================
-  // ABOUT NAV
-  // =========================
-
-  if (aboutNav) {
-
-    aboutNav.addEventListener(
-      "click",
-      () => {
-
-        showSection("home");
-
-        setTimeout(() => {
-
-          const aboutSection =
-            document.getElementById(
-              "about"
-            );
-
-          if (aboutSection) {
-
-            aboutSection.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-
-          }
-
-        }, 150);
-
-      }
-    );
-
-  }
-
-
-  // =========================
-  // EXPLORE WORK
-  // =========================
-
-  if (exploreWorkBtn) {
-
-    exploreWorkBtn.addEventListener(
-      "click",
-      () => {
-
-        const selectedWork =
-          document.querySelector(
-            ".selected-work"
+        const nav =
+          document.getElementById(
+            "site-nav"
           );
 
-        if (selectedWork) {
 
-          selectedWork.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
+        const navHeight =
+          nav
+            ? nav.offsetHeight + 28
+            : 0;
 
-        }
+
+        const position =
+          target
+            .getBoundingClientRect()
+            .top +
+          window.scrollY -
+          navHeight;
+
+
+        window.scrollTo({
+          top: position,
+          behavior: "smooth"
+        });
 
       }
     );
 
-  }
+  });
 
 
-  // =========================
-  // BACK BUTTONS
-  // =========================
+  /* =======================================================
+     ACTIVE NAV
+  ======================================================= */
 
-  backButtons.forEach(
-    (button) => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          showSection("home");
-
-          setTimeout(() => {
-
-            const selectedWork =
-              document.querySelector(
-                ".selected-work"
-              );
-
-            if (selectedWork) {
-
-              selectedWork.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-              });
-
-            }
-
-          }, 150);
-
-        }
-      );
-
-    }
-  );
+  const navAnchors =
+    document.querySelectorAll(
+      ".nav-link"
+    );
 
 
-  // =========================
-  // COVER BACK BUTTONS
-  // =========================
-
-  coverBackButtons.forEach(
-    (button) => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          showSection("home");
-
-        }
-      );
-
-    }
-  );
-
-
-  // =========================
-  // NAVBAR LINK AUTO CLOSE
-  // =========================
-
-  document
-    .querySelectorAll(
-      "#portfolioNavbar button"
+  const sections = [
+    "about",
+    "agenda",
+    "work",
+    "contact"
+  ]
+    .map(id =>
+      document.getElementById(id)
     )
-    .forEach((button) => {
+    .filter(Boolean);
 
-      button.addEventListener(
-        "click",
-        closeMobileNavbar
-      );
+
+  function updateActiveNavigation() {
+
+    const position =
+      window.scrollY +
+      window.innerHeight * 0.35;
+
+
+    let current =
+      sections.length
+        ? sections[0].id
+        : "";
+
+
+    sections.forEach(section => {
+
+      if (
+        position >=
+        section.offsetTop
+      ) {
+
+        current =
+          section.id;
+
+      }
 
     });
 
 
-  // =========================
-  // HEART GAME
-  // =========================
+    navAnchors.forEach(link => {
 
-  function updateHeartCounter() {
+      const href =
+        link.getAttribute("href");
 
-    if (!heartCounter) return;
 
-    heartCounter.textContent =
-      `♡ ${heartsFound}/4`;
-
-    heartCounter.classList.add(
-      "counter-pop"
-    );
-
-    setTimeout(() => {
-
-      heartCounter.classList.remove(
-        "counter-pop"
+      link.classList.toggle(
+        "active",
+        href === `#${current}`
       );
 
-    }, 350);
+    });
 
   }
 
 
-  hiddenHearts.forEach(
-    (heart) => {
-
-      heart.addEventListener(
-        "click",
-        () => {
-
-          if (
-            heart.classList.contains(
-              "found"
-            )
-          ) {
-            return;
-          }
+  window.addEventListener(
+    "scroll",
+    updateActiveNavigation,
+    {
+      passive: true
+    }
+  );
 
 
-          heart.classList.add(
-            "found"
-          );
-
-          heartsFound++;
-
-          updateHeartCounter();
+  updateActiveNavigation();
 
 
-          if (
-            heartsFound ===
-            hiddenHearts.length
-          ) {
+  window.addEventListener(
+    "resize",
+    () => {
 
-            setTimeout(() => {
+      if (
+        window.innerWidth > 760
+      ) {
 
-              if (heartSurprise) {
+        closeMobileMenu();
 
-                heartSurprise.classList.add(
-                  "revealed"
-                );
-
-                heartSurprise.scrollIntoView({
-                  behavior: "smooth",
-                  block: "center"
-                });
-
-              }
-
-            }, 700);
-
-          }
-
-        }
-      );
+      }
 
     }
   );
 
 
-  // =========================
-  // VIDEO PREVIEW
-  // =========================
+  /* =======================================================
+     LIGHTBOX
+  ======================================================= */
 
-  const videoPreview =
-    document.querySelector(
-      ".video-preview video"
+  const lightbox =
+    document.getElementById(
+      "lightbox"
     );
 
 
-  const videoPreviewCard =
-    document.querySelector(
-      ".video-preview"
+  const lightboxImage =
+    document.getElementById(
+      "lightbox-image"
     );
 
 
-  if (
-    videoPreview &&
-    videoPreviewCard
-  ) {
-
-    videoPreviewCard.addEventListener(
-      "mouseenter",
-      () => {
-
-        videoPreview.play().catch(() => {});
-
-      }
+  const lightboxClose =
+    document.getElementById(
+      "lightbox-close"
     );
 
 
-    videoPreviewCard.addEventListener(
-      "mouseleave",
-      () => {
-
-        videoPreview.pause();
-
-        videoPreview.currentTime = 0;
-
-      }
-    );
-
-  }
-
-
-  // =========================
-  // CARD TILT EFFECT
-  // =========================
-
-  const categoryCards =
+  const artworkImages =
     document.querySelectorAll(
-      ".category-card"
+      ".art-item img"
     );
 
 
-  categoryCards.forEach(
-    (card) => {
+  function openLightbox(image) {
 
-      card.addEventListener(
-        "mousemove",
-        (event) => {
-
-          if (
-            window.matchMedia(
-              "(prefers-reduced-motion: reduce)"
-            ).matches
-          ) {
-            return;
-          }
-
-
-          const rect =
-            card.getBoundingClientRect();
-
-
-          const x =
-            event.clientX -
-            rect.left;
-
-
-          const y =
-            event.clientY -
-            rect.top;
-
-
-          const centerX =
-            rect.width / 2;
-
-
-          const centerY =
-            rect.height / 2;
-
-
-          const rotateX =
-            ((y - centerY) /
-              centerY) *
-            -1.5;
-
-
-          const rotateY =
-            ((x - centerX) /
-              centerX) *
-            1.5;
-
-
-          card.style.transform =
-            `perspective(1000px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)`;
-
-        }
-      );
-
-
-      card.addEventListener(
-        "mouseleave",
-        () => {
-
-          card.style.transform =
-            "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-
-        }
-      );
-
-    }
-  );
-
-
-  // =========================
-  // CLICK RIPPLE
-  // =========================
-
-  document.addEventListener(
-    "click",
-    (event) => {
-
-      const interactive =
-        event.target.closest(
-          "button, a"
-        );
-
-
-      if (!interactive) return;
-
-
-      const ripple =
-        document.createElement(
-          "span"
-        );
-
-
-      ripple.className =
-        "click-ripple";
-
-
-      ripple.style.left =
-        `${event.clientX}px`;
-
-
-      ripple.style.top =
-        `${event.clientY}px`;
-
-
-      document.body.appendChild(
-        ripple
-      );
-
-
-      setTimeout(() => {
-
-        ripple.remove();
-
-      }, 700);
-
-    }
-  );
-
-
-  // =========================
-  // SCROLL REVEAL
-  // =========================
-
-  let revealObserver = null;
-
-
-  function setupRevealObserver() {
-
-    if (revealObserver) {
-
-      revealObserver.disconnect();
-
+    if (
+      !lightbox ||
+      !lightboxImage
+    ) {
+      return;
     }
 
 
-    const revealElements =
-      document.querySelectorAll(
-        [
-          ".section-heading",
-          ".category-card",
-          ".gallery-intro",
-          ".art-item",
-          ".video-project",
-          ".cta-content",
-          ".memory-heading",
-          ".memory-grid"
-        ].join(",")
-      );
+    lightboxImage.src =
+      image.currentSrc ||
+      image.src;
 
 
-    revealElements.forEach(
-      (element) => {
+    lightboxImage.alt =
+      image.alt ||
+      "Portfolio artwork";
 
-        element.classList.add(
-          "reveal-on-scroll"
-        );
 
-      }
+    lightbox.classList.add(
+      "is-open"
+    );
+
+
+    lightbox.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+
+    body.style.overflow =
+      "hidden";
+
+  }
+
+
+  function closeLightbox() {
+
+    if (!lightbox) {
+      return;
+    }
+
+
+    lightbox.classList.remove(
+      "is-open"
+    );
+
+
+    lightbox.setAttribute(
+      "aria-hidden",
+      "true"
     );
 
 
     if (
-      window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches
+      !body.classList.contains(
+        "intro-open"
+      )
     ) {
 
-      revealElements.forEach(
-        (element) => {
-
-          element.classList.add(
-            "is-visible"
-          );
-
-        }
-      );
-
-      return;
+      body.style.overflow =
+        "";
 
     }
 
 
-    revealObserver =
-      new IntersectionObserver(
-        (entries) => {
+    setTimeout(() => {
 
-          entries.forEach(
-            (entry) => {
+      if (lightboxImage) {
 
-              if (
-                entry.isIntersecting
-              ) {
+        lightboxImage.src =
+          "";
 
-                entry.target.classList.add(
-                  "is-visible"
-                );
+      }
 
-                revealObserver.unobserve(
-                  entry.target
-                );
+    }, 300);
 
-              }
+  }
 
-            }
-          );
 
-        },
-        {
-          threshold: 0.12
+  artworkImages.forEach(image => {
+
+    image.addEventListener(
+      "click",
+      () => {
+
+        openLightbox(image);
+
+      }
+    );
+
+
+    image.addEventListener(
+      "dragstart",
+      event => {
+
+        event.preventDefault();
+
+      }
+    );
+
+  });
+
+
+  if (lightboxClose) {
+
+    lightboxClose.addEventListener(
+      "click",
+      closeLightbox
+    );
+
+  }
+
+
+  if (lightbox) {
+
+    lightbox.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          lightbox
+        ) {
+
+          closeLightbox();
+
         }
-      );
-
-
-    revealElements.forEach(
-      (element) => {
-
-        revealObserver.observe(
-          element
-        );
 
       }
     );
@@ -845,78 +553,182 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function refreshRevealElements() {
+  document.addEventListener(
+    "keydown",
+    event => {
 
-    setupRevealObserver();
+      if (
+        event.key ===
+        "Escape"
+      ) {
 
-  }
+        closeLightbox();
+
+        closeMobileMenu();
+
+      }
+
+    }
+  );
 
 
-  setupRevealObserver();
+  /* =======================================================
+     VIDEO + MUSIC
+  ======================================================= */
 
-
-  // =========================
-  // CREATIVE MEMORY GAME
-  // 16 TILES / 8 PAIRS
-  // =========================
-
-  const memoryGrid =
-    document.getElementById(
-      "memory-grid"
+  const videos =
+    document.querySelectorAll(
+      ".video-project video"
     );
 
-  const memoryMoves =
-    document.getElementById(
-      "memory-moves"
+
+  videos.forEach(video => {
+
+    video.addEventListener(
+      "play",
+      () => {
+
+
+        /*
+          Only one portfolio video
+          plays at a time.
+        */
+
+        videos.forEach(
+          otherVideo => {
+
+            if (
+              otherVideo !== video &&
+              !otherVideo.paused
+            ) {
+
+              otherVideo.pause();
+
+            }
+
+          }
+        );
+
+
+        /*
+          Pause background music while
+          the video is playing.
+        */
+
+        if (
+          music &&
+          !music.paused
+        ) {
+
+          video.dataset.resumeMusic =
+            "true";
+
+
+          music.pause();
+
+        }
+
+      }
     );
 
-  const memoryMatched =
-    document.getElementById(
-      "memory-matched"
+
+    video.addEventListener(
+      "ended",
+      () => {
+
+        if (
+          !music ||
+          video.dataset.resumeMusic
+            !== "true"
+        ) {
+
+          return;
+
+        }
+
+
+        video.dataset.resumeMusic =
+          "false";
+
+
+        music
+          .play()
+          .catch(() => {});
+
+      }
     );
 
-  const memoryReset =
+  });
+
+
+  /* =======================================================
+     MATCHING GAME
+  ======================================================= */
+
+  const memoryBoard =
     document.getElementById(
-      "memory-reset"
+      "memory-board"
     );
 
-  const memoryComplete =
+
+  const movesDisplay =
+    document.getElementById(
+      "moves"
+    );
+
+
+  const matchedDisplay =
+    document.getElementById(
+      "matched"
+    );
+
+
+  const restartButton =
+    document.getElementById(
+      "restart-game"
+    );
+
+
+  const completeMessage =
     document.getElementById(
       "memory-complete"
     );
 
 
-  const memorySymbols = [
+  /*
+    Monochrome symbols only.
+    No colorful emoji.
+  */
 
+  const symbols = [
     "Aa",
-    "✎",
-    "◯",
+    "✎︎",
+    "○︎",
     "01",
-    "↗",
+    "↗︎",
     "{ }",
-    "♡",
-    "✦"
-
+    "♡︎",
+    "✦︎"
   ];
 
 
   let firstCard = null;
   let secondCard = null;
 
-  let lockBoard = false;
+  let locked = false;
 
   let moves = 0;
-  let matchedPairs = 0;
+  let matches = 0;
 
 
-  // =========================
-  // SHUFFLE
-  // =========================
+  /* =======================================================
+     SHUFFLE
+  ======================================================= */
 
-  function shuffleArray(array) {
+  function shuffle(items) {
 
     const shuffled =
-      [...array];
+      [...items];
 
 
     for (
@@ -951,354 +763,428 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // =========================
-  // RESET TURN
-  // =========================
+  /* =======================================================
+     UPDATE GAME STATS
+  ======================================================= */
 
-  function resetMemoryTurn() {
+  function updateStats() {
 
-    firstCard = null;
-    secondCard = null;
-    lockBoard = false;
+    if (movesDisplay) {
 
-  }
-
-
-  // =========================
-  // UPDATE MEMORY STATS
-  // =========================
-
-  function updateMemoryStats() {
-
-    if (memoryMoves) {
-
-      memoryMoves.textContent =
+      movesDisplay.textContent =
         moves;
 
     }
 
 
-    if (memoryMatched) {
+    if (matchedDisplay) {
 
-      memoryMatched.textContent =
-        `${matchedPairs} / 8`;
+      matchedDisplay.textContent =
+        matches;
 
     }
 
   }
 
 
-  // =========================
-  // HANDLE MEMORY CARD
-  // =========================
+  /* =======================================================
+     RESET TURN
+  ======================================================= */
 
-  function handleMemoryCard(card) {
+  function resetTurn() {
 
-    if (lockBoard) return;
+    firstCard = null;
+    secondCard = null;
 
+    locked = false;
+
+  }
+
+
+  /* =======================================================
+     FLIP CARD
+  ======================================================= */
+
+  function flipCard(card) {
 
     if (
-      card === firstCard
-    ) {
-      return;
-    }
-
-
-    if (
+      locked ||
+      card === firstCard ||
       card.classList.contains(
-        "matched"
+        "is-matched"
       )
     ) {
+
       return;
+
     }
 
 
     card.classList.add(
-      "flipped"
+      "is-flipped"
     );
 
 
     if (!firstCard) {
 
-      firstCard = card;
+      firstCard =
+        card;
 
       return;
 
     }
 
 
-    secondCard = card;
+    secondCard =
+      card;
 
-    lockBoard = true;
 
     moves++;
 
-    updateMemoryStats();
+
+    updateStats();
 
 
-    const firstValue =
-      firstCard.dataset.memoryValue;
+    const firstSymbol =
+      firstCard.dataset.symbol;
 
 
-    const secondValue =
-      secondCard.dataset.memoryValue;
+    const secondSymbol =
+      secondCard.dataset.symbol;
 
+
+    /* MATCH */
 
     if (
-      firstValue ===
-      secondValue
+      firstSymbol ===
+      secondSymbol
     ) {
 
       firstCard.classList.add(
-        "matched"
+        "is-matched"
       );
+
 
       secondCard.classList.add(
-        "matched"
+        "is-matched"
       );
 
 
-      matchedPairs++;
+      firstCard.disabled =
+        true;
 
-      updateMemoryStats();
+
+      secondCard.disabled =
+        true;
 
 
-      resetMemoryTurn();
+      matches++;
+
+
+      updateStats();
+
+
+      resetTurn();
 
 
       if (
-        matchedPairs ===
-        memorySymbols.length
+        matches ===
+        symbols.length
       ) {
 
-        setTimeout(() => {
+        if (completeMessage) {
 
-          if (memoryComplete) {
-
-            memoryComplete.classList.add(
+          completeMessage
+            .classList.add(
               "show"
             );
 
-            memoryComplete.scrollIntoView({
-              behavior: "smooth",
-              block: "nearest"
-            });
-
-          }
-
-        }, 500);
+        }
 
       }
 
-    } else {
 
-      setTimeout(() => {
-
-        firstCard.classList.remove(
-          "flipped"
-        );
-
-        secondCard.classList.remove(
-          "flipped"
-        );
-
-
-        resetMemoryTurn();
-
-      }, 850);
+      return;
 
     }
+
+
+    /* NOT A MATCH */
+
+    locked = true;
+
+
+    setTimeout(() => {
+
+      firstCard.classList.remove(
+        "is-flipped"
+      );
+
+
+      secondCard.classList.remove(
+        "is-flipped"
+      );
+
+
+      resetTurn();
+
+    }, 750);
 
   }
 
 
-  // =========================
-  // BUILD MEMORY GAME
-  // =========================
+  /* =======================================================
+     CREATE CARD
+  ======================================================= */
 
-  function buildMemoryGame() {
+  function createCard(
+    symbol,
+    index
+  ) {
 
-    if (!memoryGrid) return;
+    const card =
+      document.createElement(
+        "button"
+      );
 
 
-    memoryGrid.innerHTML = "";
+    card.type =
+      "button";
 
 
-    moves = 0;
-    matchedPairs = 0;
+    card.className =
+      "memory-card";
+
+
+    card.dataset.symbol =
+      symbol;
+
+
+    card.setAttribute(
+      "aria-label",
+      `Memory card ${index + 1}`
+    );
+
+
+    /*
+      Your Harts by Shy logo
+      appears on the CLOSED side.
+    */
+
+    card.innerHTML = `
+
+      <span class="memory-card-inner">
+
+        <span
+          class="memory-face memory-front"
+        >
+
+          <img
+            src="logo/logo-1.png"
+            alt=""
+            class="memory-logo"
+          >
+
+        </span>
+
+
+        <span
+          class="memory-face memory-back"
+        >
+
+          ${symbol}
+
+        </span>
+
+      </span>
+
+    `;
+
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        flipCard(card);
+
+      }
+    );
+
+
+    return card;
+
+  }
+
+
+  /* =======================================================
+     START GAME
+  ======================================================= */
+
+  function startGame() {
+
+    if (!memoryBoard) {
+      return;
+    }
+
+
+    memoryBoard.innerHTML =
+      "";
+
 
     firstCard = null;
     secondCard = null;
 
-    lockBoard = false;
+    locked = false;
+
+    moves = 0;
+    matches = 0;
 
 
-    if (memoryComplete) {
+    if (completeMessage) {
 
-      memoryComplete.classList.remove(
-        "show"
-      );
+      completeMessage
+        .classList.remove(
+          "show"
+        );
 
     }
 
 
-    const memoryDeck =
-      shuffleArray([
-        ...memorySymbols,
-        ...memorySymbols
+    updateStats();
+
+
+    const deck =
+      shuffle([
+        ...symbols,
+        ...symbols
       ]);
 
 
-    memoryDeck.forEach(
+    deck.forEach(
       (symbol, index) => {
 
-        const card =
-          document.createElement(
-            "button"
-          );
-
-
-        card.type =
-          "button";
-
-
-        card.className =
-          "memory-card";
-
-
-        card.dataset.memoryValue =
-          symbol;
-
-
-        card.setAttribute(
-          "aria-label",
-          `Memory card ${index + 1}`
-        );
-
-
-        const cardInner =
-          document.createElement(
-            "span"
-          );
-
-
-        cardInner.className =
-          "memory-card-inner";
-
-
-        const cardFront =
-          document.createElement(
-            "span"
-          );
-
-
-        cardFront.className =
-          "memory-card-front";
-
-
-        const cardBack =
-          document.createElement(
-            "span"
-          );
-
-
-        cardBack.className =
-          "memory-card-back";
-
-
-        cardBack.textContent =
-          symbol;
-
-
-        cardInner.appendChild(
-          cardFront
-        );
-
-
-        cardInner.appendChild(
-          cardBack
-        );
-
-
-        card.appendChild(
-          cardInner
-        );
-
-
-        card.addEventListener(
-          "click",
-          () => {
-
-            handleMemoryCard(
-              card
-            );
-
-          }
-        );
-
-
-        memoryGrid.appendChild(
-          card
+        memoryBoard.appendChild(
+          createCard(
+            symbol,
+            index
+          )
         );
 
       }
     );
 
-
-    updateMemoryStats();
-
   }
 
 
-  // =========================
-  // MEMORY RESET
-  // =========================
+  if (restartButton) {
 
-  if (memoryReset) {
-
-    memoryReset.addEventListener(
+    restartButton.addEventListener(
       "click",
-      () => {
-
-        buildMemoryGame();
-
-      }
+      startGame
     );
 
   }
 
 
-  // =========================
-  // INITIALIZE MEMORY GAME
-  // =========================
-
-  buildMemoryGame();
+  startGame();
 
 
-  // =========================
-  // ESCAPE KEY → HOME
-  // =========================
+  /* =======================================================
+     SUBTLE SCROLL REVEAL
+  ======================================================= */
 
-  document.addEventListener(
-    "keydown",
-    (event) => {
+  const revealElements =
+    document.querySelectorAll(`
+      .about-image-wrap,
+      .agenda-title,
+      .agenda-stack,
+      .work-statement,
+      .portfolio-header,
+      .art-item,
+      .video-project,
+      .play-copy,
+      .memory-board,
+      .website-note-content,
+      .contact-content
+    `);
 
-      if (
-        event.key === "Escape"
-      ) {
 
-        showSection("home");
+  revealElements.forEach(
+    element => {
 
-      }
+      element.classList.add(
+        "reveal"
+      );
 
     }
   );
 
 
-  // =========================
-  // INITIAL PAGE STATE
-  // =========================
+  if (
+    "IntersectionObserver"
+    in window
+  ) {
 
-  updateHeartCounter();
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(
+            entry => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target
+                  .classList.add(
+                    "is-visible"
+                  );
+
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            }
+          );
+
+        },
+        {
+
+          threshold: 0.06,
+
+          rootMargin:
+            "0px 0px -35px 0px"
+
+        }
+      );
+
+
+    revealElements.forEach(
+      element => {
+
+        observer.observe(
+          element
+        );
+
+      }
+    );
+
+  } else {
+
+    revealElements.forEach(
+      element => {
+
+        element.classList.add(
+          "is-visible"
+        );
+
+      }
+    );
+
+  }
 
 });
